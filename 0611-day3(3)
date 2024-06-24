@@ -1,0 +1,119 @@
+1 
+  # Sample data
+product <- c("A", "B", "C", "D", "E")
+price <- c(50, 70, 60, 45, 55)
+rating <- c(4.2, 3.8, 4.0, 4.5, 3.9)
+age_group <- c("25-35", "35-45", "18-25", "45-55", "25-35")
+
+# Combine into a data frame
+df <- data.frame(Product = product, Price = price, Rating = rating, Age_Group = age_group)
+
+# Load required library
+library(ggplot2)
+
+# Create scatter plot with facets for Age Group
+ggplot(df, aes(x = Price, y = Rating, color = Age_Group)) +
+  geom_point(size = 3) +
+  labs(x = "Price ($)", y = "Rating (out of 5)", color = "Age Group") +
+  ggtitle("Product Ratings vs Price by Age Group") +
+  theme_minimal() +
+  facet_wrap(~ Age_Group, scales = "free")
+2
+  # Install and load necessary packages
+install.packages("ggplot2")  # if not already installed
+library(ggplot2)
+
+# Plotting each Age Group separately
+ggplot(df, aes(x = Price, y = Rating, color = Age_Group)) +
+  geom_point() +
+  facet_wrap(~ Age_Group, scales = "free") +
+  labs(x = "Price ($)", y = "Rating (out of 5)", color = "Age Group") +
+  theme_minimal()
+# Install and load necessary packages
+install.packages("plotly")  # if not already installed
+library(plotly)
+
+# Convert Age_Group to a factor for correct plotting
+df$Age_Group <- factor(df$Age_Group, levels = unique(df$Age_Group))
+
+# Create 3D scatter plot using plotly
+plot_ly(data = df, x = ~Price, y = ~Rating, z = ~Age_Group,
+        color = ~Age_Group, colors = "Set1",
+        type = "scatter3d", mode = "markers",
+        marker = list(size = 5)) %>%
+  layout(scene = list(xaxis = list(title = "Price ($)"),
+                      yaxis = list(title = "Rating (out of 5)"),
+                      zaxis = list(title = "Age Group")))
+3
+  install.packages("scatterplot3d")
+library(scatterplot3d)
+# Sample data
+product <- c("A", "B", "C", "D", "E")
+price <- c(50, 70, 60, 45, 55)
+rating <- c(4.2, 3.8, 4.0, 4.5, 3.9)
+age_group <- factor(c("25-35", "35-45", "18-25", "45-55", "25-35"),
+                    levels = c("18-25", "25-35", "35-45", "45-55"))
+
+# Combine into a data frame
+df <- data.frame(Product = product, Price = price, Rating = rating, Age_Group = age_group)
+# Load ggplot2 for plotting
+library(ggplot2)
+
+# Create a 3D plot using facets for Age_Group
+ggplot(df, aes(x = Price, y = Rating, color = Age_Group, shape = Product)) +
+  geom_point(size = 4) +
+  labs(x = "Price ($)", y = "Rating (out of 5)", color = "Age Group") +
+  scale_color_manual(values = c("#1b9e77", "#d95f02", "#7570b3", "#e7298a")) +  # Optional: Custom color palette
+  facet_wrap(~ Age_Group, ncol = 2) +
+  theme_minimal()
+4
+  install.packages("plot3D")
+library(plot3D)
+# Sample data
+product <- c("A", "B", "C", "D", "E")
+price <- c(50, 70, 60, 45, 55)
+rating <- c(4.2, 3.8, 4.0, 4.5, 3.9)
+age_group <- c("25-35", "35-45", "18-25", "45-55", "25-35")
+
+# Combine into a data frame
+df <- data.frame(Product = product, Price = price, Rating = rating, Age_Group = age_group)
+# Calculate mean rating for each combination of Price and Age_Group
+library(dplyr)
+
+df_summary <- df %>%
+  group_by(Price, Age_Group) %>%
+  summarise(Rating = mean(Rating))
+
+# Convert Age_Group to a numeric factor for plotting
+df_summary$Age_Group <- as.numeric(factor(df_summary$Age_Group, levels = unique(df_summary$Age_Group)))
+
+# Create 3D scatter plot
+scatter3D(x = df_summary$Price, y = df_summary$Age_Group, z = df_summary$Rating,
+          xlab = "Price ($)", ylab = "Age Group", zlab = "Rating",
+          colvar = NULL, pch = 16, cex = 2, bty = "g", 
+          main = "Product Ratings vs Price and Age Group")
+5
+  install.packages("scatterplot3d")
+library(scatterplot3d)
+# Sample data
+product <- c("A", "B", "C", "D", "E")
+price <- c(50, 70, 60, 45, 55)
+rating <- c(4.2, 3.8, 4.0, 4.5, 3.9)
+age_group <- c("25-35", "35-45", "18-25", "45-55", "25-35")
+
+# Combine into a data frame
+df <- data.frame(Product = product, Price = price, Rating = rating, Age_Group = age_group)
+
+# Print the data frame to verify correctness
+print(df)
+# Create 3D scatter plot for Product Ratings vs Price
+scatter3D(x = df$Price, y = df$Rating, z = rep(1, nrow(df)),
+          xlab = "Price ($)", ylab = "Rating (out of 5)", zlab = "",
+          color = "blue", pch = 16, main = "Product Ratings vs Price")
+# Create a numeric representation of Age Group for plotting
+age_numeric <- as.numeric(factor(df$Age_Group, levels = unique(df$Age_Group)))
+
+# Create 3D scatter plot for Product Ratings vs Age Group
+scatter3D(x = age_numeric, y = df$Rating, z = rep(1, nrow(df)),
+          xlab = "Age Group", ylab = "Rating (out of 5)", zlab = "",
+          color = "red", pch = 16, main = "Product Ratings vs Age Group")
