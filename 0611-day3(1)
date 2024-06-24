@@ -1,0 +1,146 @@
+# Load necessary libraries
+library(ggplot2)
+
+# Create the data frame
+weather_data <- data.frame(
+  Date = as.Date(c("2023-01-01", "2023-01-02", "2023-01-03", "2023-01-04", "2023-01-05")),
+  Temperature = c(10, 12, 8, 15, 14),
+  Humidity = c(75, 70, 80, 65, 72),
+  Wind_Speed = c(15, 12, 18, 20, 16)
+)
+
+# Calculate correlations
+cor_temp_humidity <- cor(weather_data$Temperature, weather_data$Humidity)
+cor_temp_wind_speed <- cor(weather_data$Temperature, weather_data$Wind_Speed)
+
+# Print correlations
+cat("Correlation between Temperature and Humidity:", cor_temp_humidity, "\n")
+cat("Correlation between Temperature and Wind Speed:", cor_temp_wind_speed, "\n")
+
+# Plot Temperature vs. Humidity
+ggplot(weather_data, aes(x = Humidity, y = Temperature)) +
+  geom_point() +
+  geom_smooth(method = "lm", col = "blue") +
+  ggtitle("Temperature vs. Humidity") +
+  xlab("Humidity (%)") +
+  ylab("Temperature (°C)")
+
+# Plot Temperature vs. Wind Speed
+ggplot(weather_data, aes(x = Wind_Speed, y = Temperature)) +
+  geom_point() +
+  geom_smooth(method = "lm", col = "red") +
+  ggtitle("Temperature vs. Wind Speed") +
+  xlab("Wind Speed (km/h)") +
+  ylab("Temperature (°C)")
+install.packages("scatterplot3d")
+library(scatterplot3d)
+# Load the necessary library
+library(scatterplot3d)
+
+# Create a data frame with the weather data
+weather_data <- data.frame(
+  Date = as.Date(c("2023-01-01", "2023-01-02", "2023-01-03", "2023-01-04", "2023-01-05")),
+  Temperature = c(10, 12, 8, 15, 14),
+  Humidity = c(75, 70, 80, 65, 72),
+  WindSpeed = c(15, 12, 18, 20, 16)
+)
+
+# Create the 3D scatter plot
+scatterplot3d(weather_data$WindSpeed, weather_data$Humidity, weather_data$Temperature,
+              xlab = "Wind Speed (km/h)",
+              ylab = "Humidity (%)",
+              zlab = "Temperature (°C)",
+              main = "3D Scatter Plot of Wind Speed, Humidity, and Temperature",
+              pch = 19,  # Plotting character
+              color = "blue",
+              type = "h")
+# Install and load necessary packages
+install.packages("plotly")
+library(plotly)
+
+# Weather data
+weather_data <- data.frame(
+  Date = as.Date(c('2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05')),
+  Temperature = c(10, 12, 8, 15, 14),
+  Humidity = c(75, 70, 80, 65, 72),
+  Wind_Speed = c(15, 12, 18, 20, 16)
+)
+
+# Create a grid for Humidity and Wind Speed
+humidity_seq <- seq(min(weather_data$Humidity), max(weather_data$Humidity), length.out = 100)
+wind_speed_seq <- seq(min(weather_data$Wind_Speed), max(weather_data$Wind_Speed), length.out = 100)
+grid <- expand.grid(Humidity = humidity_seq, Wind_Speed = wind_speed_seq)
+
+# Fit a linear model
+model <- lm(Temperature ~ Humidity + Wind_Speed, data = weather_data)
+
+# Predict temperature on the grid
+grid$Temperature <- predict(model, newdata = grid)
+
+# Convert grid to matrix form for plotting
+temperature_matrix <- matrix(grid$Temperature, nrow = 100, ncol = 100)
+
+# 3D surface plot
+plot_ly(z = ~temperature_matrix, x = ~humidity_seq, y = ~wind_speed_seq, type = 'surface') %>%
+  layout(scene = list(
+    xaxis = list(title = 'Humidity (%)'),
+    yaxis = list(title = 'Wind Speed (km/h)'),
+    zaxis = list(title = 'Temperature (°C)')
+  ))
+# Install and load necessary packages
+install.packages("plotly")
+library(plotly)
+
+# Weather data
+weather_data <- data.frame(
+  Date = as.Date(c('2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05')),
+  Temperature = c(10, 12, 8, 15, 14),
+  Humidity = c(75, 70, 80, 65, 72),
+  Wind_Speed = c(15, 12, 18, 20, 16)
+)
+
+# Create a grid for Humidity and Wind Speed
+humidity_seq <- seq(min(weather_data$Humidity), max(weather_data$Humidity), length.out = 100)
+wind_speed_seq <- seq(min(weather_data$Wind_Speed), max(weather_data$Wind_Speed), length.out = 100)
+grid <- expand.grid(Humidity = humidity_seq, Wind_Speed = wind_speed_seq)
+
+# Fit a linear model
+model <- lm(Temperature ~ Humidity + Wind_Speed, data = weather_data)
+
+# Predict temperature on the grid
+grid$Temperature <- predict(model, newdata = grid)
+
+# Convert grid to matrix form for plotting
+temperature_matrix <- matrix(grid$Temperature, nrow = 100, ncol = 100)
+
+# 3D surface plot
+plot_ly(z = ~temperature_matrix, x = ~humidity_seq, y = ~wind_speed_seq, type = 'surface') %>%
+  layout(scene = list(
+    xaxis = list(title = 'Humidity (%)'),
+    yaxis = list(title = 'Wind Speed (km/h)'),
+    zaxis = list(title = 'Temperature (°C)')
+  ))
+# Install and load scatterplot3d package if not already installed
+install.packages("scatterplot3d")
+library(scatterplot3d)
+
+# Weather Data
+dates <- c('2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05')
+temperature <- c(10, 12, 8, 15, 14)
+humidity <- c(75, 70, 80, 65, 72)
+wind_speed <- c(15, 12, 18, 20, 16)
+
+# Numerical indices for dates
+dates_indices <- 1:length(dates)
+
+# Plotting Temperature vs Humidity
+scatterplot3d(temperature, dates_indices, humidity, color = "blue", pch = 16,
+              xlab = "Temperature (°C)", ylab = "Date Index", zlab = "Humidity (%)",
+              main = "Temperature vs Humidity")
+legend("topright", legend = dates, pch = 16, col = "blue")
+
+# Plotting Temperature vs Wind Speed
+scatterplot3d(temperature, dates_indices, wind_speed, color = "red", pch = 16,
+              xlab = "Temperature (°C)", ylab = "Date Index", zlab = "Wind Speed (km/h)",
+              main = "Temperature vs Wind Speed")
+legend("topright", legend = dates, pch = 16, col = "red")
