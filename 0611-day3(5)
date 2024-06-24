@@ -1,0 +1,85 @@
+1
+# Sample data
+student <- c("A", "B", "C", "D", "E")
+math_score <- c(85, 72, 90, 78, 88)
+science_score <- c(78, 85, 80, 75, 82)
+attendance <- c(95, 92, 98, 85, 93)
+
+# Create data frame
+df <- data.frame(Student = student, Math_Score = math_score, Science_Score = science_score, Attendance = attendance)
+
+# Plot 1: Science Scores vs Math Scores
+plot(df$Math_Score, df$Science_Score, 
+     xlab = "Math Score", ylab = "Science Score", 
+     main = "Science Scores vs Math Scores",
+     col = "blue", pch = 16)
+
+# Plot 2: Science Scores vs Attendance Percentage
+plot(df$Attendance, df$Science_Score, 
+     xlab = "Attendance (%)", ylab = "Science Score", 
+     main = "Science Scores vs Attendance",
+     col = "green", pch = 16)
+2
+# Sample data
+student <- c("A", "B", "C", "D", "E")
+math_score <- c(85, 72, 90, 78, 88)
+science_score <- c(78, 85, 80, 75, 82)
+attendance <- c(95, 92, 98, 85, 93)
+
+# Create data frame
+df <- data.frame(Student = student, Math_Score = math_score, Science_Score = science_score, Attendance = attendance)
+
+# Load necessary library
+library(scatterplot3d)
+
+# Create 3D scatter plot
+scatterplot3d(x = df$Math_Score, y = df$Science_Score, z = df$Attendance,
+              xlab = "Math Score", ylab = "Science Score", zlab = "Attendance (%)",
+              color = "blue", pch = 16, main = "Relationship between Math Score, Science Score, and Attendance")
+3
+# Sample data
+student <- c("A", "B", "C", "D", "E")
+math_score <- c(85, 72, 90, 78, 88)
+science_score <- c(78, 85, 80, 75, 82)
+attendance <- c(95, 92, 98, 85, 93)
+
+# Create data frame
+df <- data.frame(Student = student, Math_Score = math_score, Science_Score = science_score, Attendance = attendance)
+
+# Calculate correlation coefficients
+correlation_matrix <- cor(df[, c("Math_Score", "Science_Score", "Attendance")])
+
+# Print correlation matrix
+print(correlation_matrix)
+4
+# Sample data
+math_score <- c(85, 72, 90, 78, 88)
+science_score <- c(78, 85, 80, 75, 82)
+attendance <- c(95, 92, 98, 85, 93)
+
+# Load necessary library
+library(plot3D)  # For 3D plotting
+
+# Create 3D surface plot
+scatter3D(x = math_score, y = attendance, z = science_score,
+          xlab = "Math Score", ylab = "Attendance (%)", zlab = "Science Score",
+          colvar = NULL, col = "blue", pch = 16, type = "h", lwd = 3,
+          main = "3D Surface Plot: Science Scores vs Math Score and Attendance")
+5
+# Sample data
+math_score <- c(85, 72, 90, 78, 88)
+science_score <- c(78, 85, 80, 75, 82)
+attendance <- c(95, 92, 98, 85, 93)
+
+# Load necessary library
+library(scatterplot3d)
+
+# Create 3D scatter plot for Math Scores vs Science Scores
+scatterplot3d(x = math_score, y = science_score, z = rep(1, length(math_score)),
+              xlab = "Math Score", ylab = "Science Score", zlab = "",
+              color = "blue", pch = 16, main = "Science Scores vs Math Scores")
+
+# Create 3D scatter plot for Attendance vs Science Scores
+scatterplot3d(x = attendance, y = science_score, z = rep(1, length(attendance)),
+              xlab = "Attendance (%)", ylab = "Science Score", zlab = "",
+              color = "green", pch = 16, main = "Science Scores vs Attendance")
