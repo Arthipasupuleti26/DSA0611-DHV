@@ -1,0 +1,76 @@
+install.packages("scatterplot3d")
+library(scatterplot3d)
+# Sample data
+location <- c("A", "B", "C", "D", "E")
+temperature <- c(15, 20, 18, 12, 17)
+humidity <- c(65, 70, 68, 60, 72)
+co2_levels <- c(400, 450, 420, 380, 430)
+
+# Combine into a data frame
+df <- data.frame(Location = location, Temperature = temperature, Humidity = humidity, `CO2 Levels` = co2_levels)
+
+# Print the data frame to verify correctness
+print(df)
+# Create 3D scatter plot
+scatter3D(x = df$Temperature, y = df$Humidity, z = df$`CO2 Levels`,
+          xlab = "Temperature (°C)", ylab = "Humidity (%)", zlab = "CO2 Levels (ppm)",
+          color = "blue", pch = 16, main = "Environmental Data")
+install.packages("scatterplot3d")
+library(scatterplot3d)
+# Sample data
+location <- c("A", "B", "C", "D", "E")
+temperature <- c(15, 20, 18, 12, 17)
+humidity <- c(65, 70, 68, 60, 72)
+co2_levels <- c(400, 450, 420, 380, 430)
+
+# Combine into a data frame
+df <- data.frame(Location = location, Temperature = temperature, Humidity = humidity, CO2_Levels = co2_levels)
+
+# Print the data frame to verify correctness
+print(df)
+# Create 3D scatter plot for Temperature, Humidity, and CO2 Levels
+scatter3D(x = df$Temperature, y = df$Humidity, z = df$CO2_Levels,
+          xlab = "Temperature (°C)", ylab = "Humidity (%)", zlab = "CO2 Levels (ppm)",
+          color = "blue", pch = 16, main = "Environmental Data Across Locations")
+# Create 3D scatter plot for Temperature, Humidity, and CO2 Levels
+scatter3D(x = df$Temperature, y = df$Humidity, z = df$CO2_Levels,
+          xlab = "Temperature (°C)", ylab = "Humidity (%)", zlab = "CO2 Levels (ppm)",
+          color = "blue", pch = 16, main = "Environmental Data Across Locations")
+install.packages("plot3D")
+library(plot3D)
+# Sample data
+location <- c("A", "B", "C", "D", "E")
+temperature <- c(15, 20, 18, 12, 17)
+humidity <- c(65, 70, 68, 60, 72)
+co2_levels <- c(400, 450, 420, 380, 430)
+
+# Combine into a data frame
+df <- data.frame(Location = location, Temperature = temperature, Humidity = humidity, CO2_Levels = co2_levels)
+
+# Print the data frame to verify correctness
+print(df)
+# Create 3D surface plot
+persp3D(x = df$Temperature, y = df$Humidity, z = df$CO2_Levels,
+        xlab = "Temperature (°C)", ylab = "Humidity (%)", zlab = "CO2 Levels (ppm)",
+        col = "lightblue", border = NA)
+install.packages("scatterplot3d")  # For scatter3D function
+library(scatterplot3d)
+# Sample data
+location <- c("A", "B", "C", "D", "E")
+temperature <- c(15, 20, 18, 12, 17)
+humidity <- c(65, 70, 68, 60, 72)
+co2_levels <- c(400, 450, 420, 380, 430)
+
+# Combine into a data frame
+df <- data.frame(Location = location, Temperature = temperature, Humidity = humidity, CO2_Levels = co2_levels)
+
+# Print the data frame to verify correctness
+print(df)
+# Create 3D scatter plot for CO2 Levels vs Temperature
+scatter3D(x = df$Temperature, y = df$CO2_Levels, z = rep(1, nrow(df)),
+          xlab = "Temperature (°C)", ylab = "CO2 Levels (ppm)", zlab = "",
+          color = "blue", pch = 16, main = "CO2 Levels vs Temperature")
+# Create 3D scatter plot for CO2 Levels vs Humidity
+scatter3D(x = df$Humidity, y = df$CO2_Levels, z = rep(1, nrow(df)),
+          xlab = "Humidity (%)", ylab = "CO2 Levels (ppm)", zlab = "",
+          color = "green", pch = 16, main = "CO2 Levels vs Humidity")
